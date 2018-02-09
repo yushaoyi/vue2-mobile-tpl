@@ -123,3 +123,24 @@ export function getMonthEndDate (num) {
   var date = new Date(new Date(nowYear, nowMonth + num + 1, 1).getTime() - 1 * 24 * 3600 * 1000)
   return date
 }
+
+/**
+ * 淘宝flexible下，将富文本内容的px大小转换成rem
+ * @param str
+ * @returns {*}
+ */
+export function htmlPx2Rem (htmlStr) {
+  if (!htmlStr) {
+    return ''
+  }
+  let docEl = document.documentElement
+  let baseFontSize = docEl.style.fontSize
+  let num = baseFontSize ? parseInt(baseFontSize.replace(/px/g, '')) : ''
+  let dpr = docEl.getAttribute('data-dpr')
+  if (!dpr || !num) {
+    return htmlStr
+  }
+  return htmlStr.replace(/(\d+)px/g, function (match, p1) {
+    return Number(p1) / num * dpr + 'rem';
+  })
+}
