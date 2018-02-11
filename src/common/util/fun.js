@@ -126,6 +126,10 @@ export function getMonthEndDate (num) {
 
 /**
  * 淘宝flexible下，将富文本内容的px大小转换成rem
+ * // FIXME
+ * dpr为2的情况下
+ * 应该把字体的单位按照body的font-size（24px）来转换（和dpr有关）
+ * 其他width,padding等按照rem来转换，根据html的font-size（1rem=75px）
  * @param str
  * @returns {*}
  */
